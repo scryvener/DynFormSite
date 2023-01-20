@@ -35,7 +35,8 @@
         function accessVar(data){
           //var response=JSON.parse(data)
           //var textData=response.body
-          alert(data)
+          console.log(data.response)
+          console.log(data.responseText)
         }
 
         pullData('/.netlify/functions/processData',accessVar)
