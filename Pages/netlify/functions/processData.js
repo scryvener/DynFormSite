@@ -1,7 +1,6 @@
 
 export const handler = async (event,data) => {
-    console.log('insideFunction')
-    console.log(data)
+    
     // var inc=JSON.parse(data)
 
     // var i=5;
@@ -10,6 +9,6 @@ export const handler = async (event,data) => {
     // Other properties such as headers or body can also be included.
     return {
         statusCode: 200,
-        body: JSON.stringify(String(12))
+        body: JSON.stringify(data)
     }
 }
