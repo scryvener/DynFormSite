@@ -19,48 +19,32 @@
     <div id="test"></div>
 
     <script>
-
-        // function runFunc(){
-        //   function pullData(path,callback){
-        //   var xhttp = new XMLHttpRequest();
-        //   xhttp.open("GET",path,true);
-        //   xhttp.onreadystatechange=function(){
-        //     if (this.readyState == 4 && this.status == 200) {
-        //       callback(this);
-        //     };
-        //   };
-        //   xhttp.send()
-        // }
-        // function accessVar(data){
-        //   //var response=JSON.parse(data)
-        //   //var textData=response.body
-        //   console.log(data.response)
-        //   console.log(data.responseText)
-        // }
-        // pullData('/.netlify/functions/processData',accessVar)
-        // }
-
-        async function runFunc(){
-          const pullData = async (path) => {
-            try {
-            const response = await fetch(path);
-              if (!response.ok) {
-                throw new Error(response.statusText);
-              }
-              const data = await response.json();
-              return data;
-            } catch (error) {
-              console.error(error);
+      async function runFunc(){
+        const pullData = async (path,data) => {
+          try {
+            const response = await fetch(path, {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: { 'Content-Type': 'application/json' }
+            });
+            if (!response.ok) {
+              throw new Error(response.statusText);
             }
+            const jsonData = await response.json();
+            return jsonData;
+          } catch (error) {
+            console.error(error);
           }
-          function accessVar(data){
-              console.log(data);
-            }
-
-            const data = await pullData('/.netlify/functions/processData');
-            accessVar(data);
         }
-        runFunc();
+      function accessVar(data){
+              console.log(data);
+          }
+
+          const data = { someData: 6 };
+          const jsonData = await pullData('/.netlify/functions/processData',data);
+          accessVar(jsonData);
+      }
+    runFunc();
 
     </script>
 
