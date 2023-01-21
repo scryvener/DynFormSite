@@ -36,13 +36,14 @@
             console.error(error);
           }
         }
-      function accessVar(data){
-              console.log(data);
-          }
 
-          const data = { someData: 6 };
-          const jsonData = await pullData('/.netlify/functions/processData',data);
-          accessVar(jsonData);
+
+        const data = { someData: 6 };
+        const jsonData = await pullData('/.netlify/functions/processData',data);
+        console.log('FunctionRunning')
+        console.log(jsonData)
+
+
       }
     //runFunc();
 

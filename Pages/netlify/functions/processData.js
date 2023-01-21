@@ -1,5 +1,6 @@
 
 export const handler = async (event,data) => {
+    console.log('insideFunction')
     console.log(data)
     // var inc=JSON.parse(data)
 
