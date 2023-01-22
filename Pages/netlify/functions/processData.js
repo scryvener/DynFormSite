@@ -2,9 +2,9 @@
 
 export const handler = async (event,data) => {
     
-    const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+    //const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-    console.log(event.body)
+    //console.log(event.body)
     
     //parse data sent
     var inc=JSON.parse(event.body)
@@ -12,11 +12,28 @@ export const handler = async (event,data) => {
     var product=inc.product
 
     //construct prompt, pull in api key
-    const apiKey=process.env.OpenAIKey
 
     var prompt=`A user is giving feedback on the product: ${product}. The user has provided the following open ended feedback:"${openR}". Generate a set of 3 questions asking for elaboration on their feedback with the goal of eliciting more specific details of their opinion.`
 
-    var bodyData={
+    const { Configuration, OpenAIApi } = require("openai");
+
+    const configuration = new Configuration({
+        apiKey: process.env.OpenAIKey,
+    });
+    const openai = new OpenAIApi(configuration);
+
+    const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: prompt,
+        temperature: 0.9,
+        max_tokens: 250,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0.6,
+      });
+
+
+    /* var bodyData={
         'model':'text-davinci-003',
         'prompt': prompt,
         'max_tokens':250,
@@ -25,7 +42,7 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
-    console.log('Bearer '+apiKey )
+    //console.log('Bearer '+apiKey )
 
     //make api call
     async function apiCall(path,data){
@@ -53,7 +70,7 @@ export const handler = async (event,data) => {
     }
 
     var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
-    console.log(apiResponse)
+    console.log(apiResponse) */
 
     
     //process response, return the set of questions back to client side
@@ -63,7 +80,7 @@ export const handler = async (event,data) => {
     // Other properties such as headers or body can also be included.
     return {
         statusCode: 200,
-        body: JSON.stringify('test')
+        body: JSON.stringify(response)
     };
 };
 
