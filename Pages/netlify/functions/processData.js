@@ -23,37 +23,34 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
-    //console.log('Bearer '+apiKey )
+    console.log('Bearer '+apiKey )
 
     //make api call
     async function apiCall(path,data){
         try {
             const response = await fetch(path, {
                 method: 'POST',
-                body: data,
-                headers: { 
+                body: JSON.stringify(data),
+                headers: JSON.stringify({ 
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer '+apiKey 
-                }
+                })
             });
             if (!response.ok) {
-                console.log('Response Error!')
+                console.log('Error!')
                 throw new Error(response.statusText);
             }
             const jsonData = await response.json();
-            console.log(jsonData)
 
             return jsonData;
 
         } catch (error) {
-            console.log('Error!')
             console.error(error);
         }
 
     }
 
     var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
-
 
     
     //process response, return the set of questions back to client side
