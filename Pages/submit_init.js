@@ -58,7 +58,7 @@ async function submit_init(){
 
         let submitQ=document.getElementById('subDynQ'+String(i))
 
-        submitQ.val()=re_array[i-1][1]
+        submitQ.value=re_array[i-1][1]
 
     }
 
