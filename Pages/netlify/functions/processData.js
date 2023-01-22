@@ -23,6 +23,9 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
+    console.log(prompt)
+    console.log(bodyData)
+
     //make api call
     async function apiCall(path,data){
         try {
@@ -48,6 +51,8 @@ export const handler = async (event,data) => {
     }
 
     var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
+
+    console.log(apiResponse.statusCode)
 
     
     //process response, return the set of questions back to client side
