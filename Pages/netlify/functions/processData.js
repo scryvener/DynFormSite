@@ -23,21 +23,21 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
-    console.log(prompt)
-    console.log(bodyData)
+    console.log('Bearer '+apiKey )
 
     //make api call
     async function apiCall(path,data){
         try {
             const response = await fetch(path, {
                 method: 'POST',
-                body: JSON.stringify(data),
+                body: data,
                 headers: { 
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer '+apiKey 
                 }
             });
             if (!response.ok) {
+                console.log('Error!')
                 throw new Error(response.statusText);
             }
             const jsonData = await response.json();
