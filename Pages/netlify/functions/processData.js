@@ -23,7 +23,7 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
-    console.log('Bearer '+apiKey )
+    //console.log('Bearer '+apiKey )
 
     //make api call
     async function apiCall(path,data){
@@ -37,14 +37,16 @@ export const handler = async (event,data) => {
                 }
             });
             if (!response.ok) {
-                console.log('Error!')
+                console.log('Response Error!')
                 throw new Error(response.statusText);
             }
             const jsonData = await response.json();
+            console.log(jsonData)
 
             return jsonData;
 
         } catch (error) {
+            console.log('Error!')
             console.error(error);
         }
 
@@ -52,7 +54,6 @@ export const handler = async (event,data) => {
 
     var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
 
-    console.log(apiResponse.statusCode)
 
     
     //process response, return the set of questions back to client side
