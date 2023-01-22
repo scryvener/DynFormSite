@@ -19,8 +19,16 @@
                   <p>Testing a dynamic form. It uses GPT3 to create follow-up questions based on your open ended responses. The form is structured as a product feedback form, but the idea is that you can 
                     expand this to anything, i.e. opinion surveys, voice of customer surveys, etc.
                   </p>
+
+                  <p>Note there's no success page atm.</p>
                   
-                  <form id="msform">
+                  <form 
+                  id="msform" 
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  name="feedback"
+                  method="POST"
+                  >
                       <!-- progressbar -->
                       <ul id="progressbar">
                           <li class="active"><strong>Initial</strong></li>
@@ -41,6 +49,13 @@
                                 </div>
                             </div>
 
+                            <input type="hidden" name="form-name" value="feedback" />
+                            <p style="visibility: hidden">
+                              <label>
+                              Don't fill this out if you're human: <input name="bot-field" />
+                              </label>
+                            </p>
+
                             <label class="fieldlabels">Please enter what product you are providing feedback for: </label> 
                             <input type="text" name="product" id="productQ" placeholder="Type Here" /> 
                             
@@ -51,6 +66,7 @@
 
                           <input type="button" name="next" class="next action-button" value="Next" onclick="submit_init()"/>
                       </fieldset>
+
                       <fieldset>
                           <div class="form-card">
                               <div class="row">
@@ -71,7 +87,10 @@
                               <label class="fieldlabels" id="DynQ3">Placeholder</label>
                               <textarea type="textarea" name="DynQ3R" id="DynQ3R" placeholder="Type Here"></textarea> 
 
-                          </div> 
+                          </div>
+                          
+                          <!-- generate hidden fields to hold the summary and the Dynamic Questions made so they get submitted with the netlify form -->
+
                           <input type="submit" name="next" class="next action-button" value="Submit" /> 
                           <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                       </fieldset>

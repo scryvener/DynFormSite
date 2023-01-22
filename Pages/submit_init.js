@@ -1,5 +1,5 @@
 //pulls data from first half of form and fires to serverside in order to query the openAI API
-function submit_init(){
+async function submit_init(){
 
     //pull Data from the first half
     let product=$('#productQ').val()
@@ -12,9 +12,27 @@ function submit_init(){
     
     //pass to server side
 
-    
-
-    
+    const pullData = async (path,data) => {
+        try {
+          const response = await fetch(path, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+          });
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          const jsonData = await response.json();
+          return jsonData;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+  
+      const jsonData = await pullData('/.netlify/functions/processData',data);
+      console.log('FunctionRunning')
+      console.log(jsonData)
+  
     //Generate new questions using the response, update 2nd part of the form
 
     //for debug/testing, replace with the actual response.
@@ -41,32 +59,3 @@ function submit_init(){
 
 }
 
-
-//fix this later
-
-// async function runFunc(){
-//     const pullData = async (path,data) => {
-//       try {
-//         const response = await fetch(path, {
-//           method: 'POST',
-//           body: JSON.stringify(data),
-//           headers: { 'Content-Type': 'application/json' }
-//         });
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         const jsonData = await response.json();
-//         return jsonData;
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     }
-
-
-//     const data = { someData: 6 };
-//     const jsonData = await pullData('/.netlify/functions/processData',data);
-//     console.log('FunctionRunning')
-//     console.log(jsonData)
-
-
-//   }
