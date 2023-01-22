@@ -62,5 +62,7 @@ async function submit_init(){
 
 function submit_wrap(){
   submit_init()
+
+  return 'Good';
 }
 
