@@ -52,7 +52,7 @@ export const handler = async (event,data) => {
 
     }
 
-    var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
+    var apiResponse= await apiCall('https://api.openai.com/v1/completions',bodyData)
     console.log(apiResponse)
 
     
