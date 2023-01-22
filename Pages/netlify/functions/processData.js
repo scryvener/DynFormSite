@@ -7,6 +7,8 @@ export const handler = async (event,data) => {
 
     var product1=inc.product+'you found me'
 
+    console.log(openR1)
+
     //var i=5;
     //var k=i+Number(inc.someData)
     // Netlify Functions need to return an object with a statusCode
@@ -14,8 +16,7 @@ export const handler = async (event,data) => {
     return {
         statusCode: 200,
         body: {
-            'responseMod':openR1,
-            'product1Mod':product1
+            inc
         }
     }
 }
