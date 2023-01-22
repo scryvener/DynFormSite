@@ -3,9 +3,9 @@ export const handler = async (event,data) => {
     
     var inc=JSON.parse(event.body)
 
-    var openR1=inc.openR+'Hello There'
+    var openR1=JSON.stringify(inc.openR+' Hello There')
 
-    var product1=inc.product+'you found me'
+    var product1=JSON.stringify(inc.product+' you found me')
 
     
 
