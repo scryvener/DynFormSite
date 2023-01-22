@@ -1,52 +1,91 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script src="/assets/iframe_ext/jquery_mostRecent.js"></script>
+    <script src="/form_funct.js"></script>
+    <script src="/submit_init.js"></script>
+    <link href="./form_css.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     
-    <title>Testing things </title>
   </head>
+
   <body>
-    <div>
-        <p>Hello There how are you</p>
-    </div>
-    <div>
-        <button onclick="runFunc()">Press me</button>
-    </div>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+          <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+              <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                  <h2 id="heading">Dynamic Form Test</h2>
+                  <p>Testing a dynamic form. It uses GPT3 to create follow-up questions based on your open ended responses. The form is structured as a product feedback form, but the idea is that you can 
+                    expand this to anything, i.e. opinion surveys, voice of customer surveys, etc.
+                  </p>
+                  
+                  <form id="msform">
+                      <!-- progressbar -->
+                      <ul id="progressbar">
+                          <li class="active"><strong>Initial</strong></li>
+                          <li ><strong>Dynamic Generated</strong></li>
+                      </ul>
+                      <div class="progress">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div> <br> <!-- fieldsets -->
 
-    <div id="test"></div>
+                      <fieldset>
+                          <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Initial Review</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 2</h2>
+                                </div>
+                            </div>
 
-    <script>
-      async function runFunc(){
-        const pullData = async (path,data) => {
-          try {
-            const response = await fetch(path, {
-              method: 'POST',
-              body: JSON.stringify(data),
-              headers: { 'Content-Type': 'application/json' }
-            });
-            if (!response.ok) {
-              throw new Error(response.statusText);
-            }
-            const jsonData = await response.json();
-            return jsonData;
-          } catch (error) {
-            console.error(error);
-          }
-        }
+                            <label class="fieldlabels">Please enter what product you are providing feedback for: </label> 
+                            <input type="text" name="product" id="productQ" placeholder="Type Here" /> 
+                            
+                            <label class="fieldlabels">Please type your review here. Please list areas of improvement, or features that worked well. You can also leave general comments.</label> 
+                            <textarea type="textarea" name="openR" id="openRQ" placeholder="Type Here"></textarea> 
+                            
+                          </div> 
 
+                          <input type="button" name="next" class="next action-button" value="Next" onclick="submit_init()"/>
+                      </fieldset>
+                      <fieldset>
+                          <div class="form-card">
+                              <div class="row">
+                                  <div class="col-7">
+                                      <h2 class="fs-title">Additional Questions</h2>
+                                  </div>
+                                  <div class="col-5">
+                                      <h2 class="steps">Step 2 - 2</h2>
+                                  </div>
+                              </div> 
+                              
+                              <label class="fieldlabels" id="DynQ1">Placeholder</label>
+                              <textarea type="textarea" name="DynQ1R" id="DynQ1R" placeholder="Type Here"></textarea>
+                              
+                              <label class="fieldlabels" id="DynQ2">Placeholder</label>
+                              <textarea type="textarea" name="DynQ2R" id="DynQ2R" placeholder="Type Here"></textarea> 
 
-        const data = { someData: 6 };
-        const jsonData = await pullData('/.netlify/functions/processData',data);
-        console.log('indexFunction')
-        console.log(jsonData)
+                              <label class="fieldlabels" id="DynQ3">Placeholder</label>
+                              <textarea type="textarea" name="DynQ3R" id="DynQ3R" placeholder="Type Here"></textarea> 
 
+                          </div> 
+                          <input type="submit" name="next" class="next action-button" value="Submit" /> 
+                          <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                      </fieldset>
+                      
+                  </form>
 
-      }
-    //runFunc();
-
-    </script>
+                  <p>
+                    Credit to the forms <a href="https://csshint.com/multi-step-html-forms/">here</a> for me to template off of.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
 
   </body>
+
+</html>
