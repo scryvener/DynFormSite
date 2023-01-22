@@ -13,7 +13,7 @@ $(document).ready(function(){
         
         function(){
 
-            submitWrap()
+            submit_wrap()
     
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
