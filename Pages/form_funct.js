@@ -11,9 +11,9 @@ $(document).ready(function(){
     
     $(".next").click(
         
-        function(){
+        async function(){
 
-            submit_wrap()
+            await submit_wrap()
     
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
