@@ -32,6 +32,8 @@ async function submit_init(){
       const jsonData = await pullData('/.netlify/functions/processData',data);
       console.log('FunctionRunning')
       console.log(jsonData)
+
+      console.log(jsonData.openRMod)
   
     //Generate new questions using the response, update 2nd part of the form
 

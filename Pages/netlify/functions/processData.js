@@ -20,8 +20,8 @@ export const handler = async (event,data) => {
     return {
         statusCode: 200,
         body: JSON.stringify({
-            "openRMod":openR1,
-            "product1":product1
+            openRMod:openR1,
+            product1:product1
         })
     };
 };
