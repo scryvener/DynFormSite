@@ -19,8 +19,17 @@ export const handler = async (event,data) => {
     // Other properties such as headers or body can also be included.
     return {
         statusCode: 200,
-        body: {
-            "openRMod":openR1
-        }
-    }
-}
+        body: JSON.stringify({
+            "openRMod":openR1,
+            "product1":product1
+        })
+    };
+};
+
+
+// exports.handler = async function (event, context) {
+//     return {
+//       statusCode: 200,
+//       body: JSON.stringify({ message: "Hello World" }),
+//     };
+//   };
