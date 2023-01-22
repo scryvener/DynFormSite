@@ -7,7 +7,11 @@ export const handler = async (event,data) => {
 
     var product1=JSON.stringify(inc.product+' you found me')
 
-    
+    let temp_body={
+        "openRMod":openR1,
+        "product1":product1
+    }
+    console.log(temp_body)    
 
     //var i=5;
     //var k=i+Number(inc.someData)
@@ -16,8 +20,7 @@ export const handler = async (event,data) => {
     return {
         statusCode: 200,
         body: {
-            "openRMod":openR1,
-            "product1":product1
+            "openRMod":openR1
         }
     }
 }
