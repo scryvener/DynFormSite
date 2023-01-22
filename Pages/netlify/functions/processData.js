@@ -25,7 +25,7 @@ export const handler = async (event,data) => {
         'frequency_penalty':0
     }
 
-    console.log('Bearer '+apiKey )
+    //console.log('Bearer '+apiKey )
 
     //make api call
     async function apiCall(path,data){
@@ -53,17 +53,20 @@ export const handler = async (event,data) => {
     }
 
     var apiResponse= await apiCall('https://api.openai.com/v1/completions',bodyData)
-    console.log(apiResponse)
+    //console.log(apiResponse)
 
     
     //process response, return the set of questions back to client side
+    newQText=apiResponse.choices[0]
+    const reg= /\d{1}.\s(\w.*)/g;
 
+    let re_array=[...newQText.matchAll(reg)];
 
     // Netlify Functions need to return an object with a statusCode
     // Other properties such as headers or body can also be included.
     return {
         statusCode: 200,
-        body: JSON.stringify('test')
+        body: JSON.stringify(re_array)
     };
 };
 
