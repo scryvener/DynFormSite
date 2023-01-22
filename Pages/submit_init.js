@@ -29,9 +29,9 @@ async function submit_init(){
         }
       }
   
-    const newQ = await pullData('/.netlify/functions/processData',data);
+    const apiResponse = await pullData('/.netlify/functions/processData',data);
     console.log('FunctionRunning')
-    console.log(newQ)
+    console.log(apiResponse)
 
     
   
