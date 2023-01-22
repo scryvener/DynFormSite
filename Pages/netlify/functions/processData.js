@@ -4,6 +4,8 @@ export const handler = async (event,data) => {
     
     const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+    console.log(event.body)
+    
     //parse data sent
     var inc=JSON.parse(event.body)
     var openR=inc.openR
@@ -31,10 +33,10 @@ export const handler = async (event,data) => {
             const response = await fetch(path, {
                 method: 'POST',
                 body: JSON.stringify(data),
-                headers: JSON.stringify({ 
+                headers: { 
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer '+apiKey 
-                })
+                }
             });
             if (!response.ok) {
                 console.log('Error!')
@@ -51,6 +53,7 @@ export const handler = async (event,data) => {
     }
 
     var apiResponse=apiCall('https://api.openai.com/v1/completions',bodyData)
+    console.log(apiResponse)
 
     
     //process response, return the set of questions back to client side
@@ -60,7 +63,7 @@ export const handler = async (event,data) => {
     // Other properties such as headers or body can also be included.
     return {
         statusCode: 200,
-        body: JSON.stringify(apiResponse)
+        body: JSON.stringify('test')
     };
 };
 
