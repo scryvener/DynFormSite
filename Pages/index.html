@@ -64,7 +64,7 @@
                             
                           </div> 
 
-                          <input type="button" name="next" class="next action-button" value="Next" /> <!-- onclick="submit_wrap()" -->
+                          <input type="button" class="next action-button" value="Next" /> <!-- onclick="submit_wrap()" -->
                       </fieldset>
 
                       <fieldset>
@@ -90,6 +90,13 @@
                           </div>
                           
                           <!-- generate hidden fields to hold the summary and the Dynamic Questions made so they get submitted with the netlify form -->
+
+                          <div>
+                            <input type="hidden" name="DynQ1" id="subDynQ1" value="" />
+                            <input type="hidden" name="DynQ2" id="subDynQ2" value="" />
+                            <input type="hidden" name="DynQ3" id="subDynQ3" value="" />
+                            <input type="hidden" name="OpenRSumm" value="" />
+                          </div>
 
                           <input type="submit" name="next" class="next action-button" value="Submit" /> 
                           <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
