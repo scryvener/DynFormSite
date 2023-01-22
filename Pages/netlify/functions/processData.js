@@ -3,7 +3,7 @@
 
 export const handler = async (event,data) => {
     
-    const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+    //const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
     //parse data sent
     var inc=JSON.parse(event.body)
