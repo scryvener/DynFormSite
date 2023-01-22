@@ -30,10 +30,11 @@ async function submit_init(){
       }
   
     const apiResponse = await pullData('/.netlify/functions/processData',data);
-    console.log('FunctionRunning')
     console.log(apiResponse)
 
-    
+    apiResponseText=apiResponse.choices[0].text
+
+    console.log(apiResponseText)
   
     //Generate new questions using the response, update 2nd part of the form
 
@@ -47,7 +48,7 @@ async function submit_init(){
 
     const reg= /\d{1}.\s(\w.*)/g;
 
-    let re_array=[...temp_resp.matchAll(reg)];
+    let re_array=[...apiResponseText.matchAll(reg)];
 
     for (let i=1;i<=re_array.length;i++){
 
