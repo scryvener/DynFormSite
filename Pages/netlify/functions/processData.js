@@ -7,7 +7,7 @@ export const handler = async (event,data) => {
 
     var product1=inc.product+'you found me'
 
-    console.log(openR1)
+    
 
     //var i=5;
     //var k=i+Number(inc.someData)
@@ -16,7 +16,8 @@ export const handler = async (event,data) => {
     return {
         statusCode: 200,
         body: {
-            inc
+            "openRMod":openR1,
+            "product1":product1
         }
     }
 }
