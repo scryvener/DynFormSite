@@ -41,6 +41,8 @@ $(document).ready(function(){
     );
     
     $(".previous").click(function(){
+
+        prev_reset()
     
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
