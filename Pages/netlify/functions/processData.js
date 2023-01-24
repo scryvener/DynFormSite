@@ -14,7 +14,7 @@ export const handler = async (event,data) => {
     //construct prompt, pull in api key
     const apiKey=process.env.OpenAIKey
 
-    var prompt=`A user is giving feedback on the following product they purchased: ${product}. The user has provided the following open ended feedback:"${openR}". Generate a set of 3 questions asking for elaboration on different parts of their feedback with the goal of eliciting more specific details of their overall experience with the product.`
+    var prompt=`A user is giving feedback on the following product they purchased: ${product}. The user has provided the following open ended feedback:"${openR}". Generate a set of 3 questions asking for elaboration on specific details of their feedback or more details of their overall experience with the product.`
 
     var bodyData={
         'model':'text-davinci-003',
